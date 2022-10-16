@@ -16,7 +16,7 @@ module.exports = {
     'prettier',
     'import',
   ],
-  ignorePatterns: ['.eslintrc.json'],
+  ignorePatterns: ['.eslintrc.js'],
   extends: [
     'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended',
