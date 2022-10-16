@@ -1,4 +1,9 @@
 module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -18,9 +23,12 @@ module.exports = {
   ],
   ignorePatterns: ['.eslintrc.js'],
   extends: [
+    'eslint:recommended',
     'next/core-web-vitals',
+    'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
+    'plugin:import/typescript',
     'plugin:import/typescript',
   ],
   settings: {
@@ -156,6 +164,12 @@ module.exports = {
           order: 'asc',
           caseInsensitive: true,
         },
+      },
+    ],
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: ['.*'],
       },
     ],
   },
