@@ -21,13 +21,12 @@ export const publicProcedure = t.procedure
  * users are logged in
  */
 const isAuthed = t.middleware(async ({ ctx, next }) => {
-  if (!ctx.session || !ctx.session.user) {
+  if (ctx.token == null) {
     throw new TRPCError({ code: 'UNAUTHORIZED' })
   }
   return next({
     ctx: {
-      // infers the `session` as non-nullable
-      session: { ...ctx.session, user: ctx.session.user },
+      token: ctx.token,
     },
   })
 })
