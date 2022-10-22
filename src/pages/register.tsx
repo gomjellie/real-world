@@ -33,6 +33,7 @@ const RegisterPage: NextPage = () => {
 
   if (session) {
     // TODO: redirect to home page
+    window.location.href = '/'
     return <div>hi {session.username} you&apos;re already logged in</div>
   }
 
