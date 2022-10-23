@@ -2,14 +2,14 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import type { FormEvent } from 'react'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Header } from '~/components/Header'
 import { deleteCookie, setCookie } from '~/utils/cookieUtils'
 import { trpc } from '~/utils/trpc'
 
 const RegisterPage: NextPage = () => {
-  const { data: session } = trpc.auth.getSession.useQuery()
+  const { data: session, refetch } = trpc.auth.getSession.useQuery()
   const registerMutation = trpc.auth.registerUser.useMutation()
   const { register, watch } = useForm()
   const router = useRouter()
@@ -27,15 +27,16 @@ const RegisterPage: NextPage = () => {
         return
       }
       setCookie('token', response.user.token)
+      refetch()
     },
-    [watch, registerMutation],
+    [watch, registerMutation, refetch],
   )
 
-  if (session) {
-    // TODO: redirect to home page
-    router.push('/')
-    return <div>hi {session.username} you&apos;re already logged in</div>
-  }
+  useEffect(() => {
+    if (session) {
+      router.push('/')
+    }
+  }, [session, router])
 
   const errors = (() => {
     if (registerMutation.data && 'errors' in registerMutation.data) {
@@ -75,7 +76,7 @@ const RegisterPage: NextPage = () => {
 
                 {errors.username && (
                   <ul className="error-messages">
-                    <li>{errors.username}</li>
+                    <li>username {errors.username}</li>
                   </ul>
                 )}
                 <fieldset className="form-group">
@@ -90,7 +91,7 @@ const RegisterPage: NextPage = () => {
                 </fieldset>
                 {errors.email && (
                   <ul className="error-messages">
-                    <li>{errors.email}</li>
+                    <li>email {errors.email}</li>
                   </ul>
                 )}
                 <fieldset className="form-group">
@@ -105,7 +106,7 @@ const RegisterPage: NextPage = () => {
                 </fieldset>
                 {errors.password && (
                   <ul className="error-messages">
-                    <li>{errors.password}</li>
+                    <li>password {errors.password}</li>
                   </ul>
                 )}
                 <button
