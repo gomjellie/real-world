@@ -6,7 +6,7 @@ import { protectedProcedure, publicProcedure, router } from '~/server/trpc/trpc'
 export const authRouter = router({
   loginUser: publicProcedure
     .input(z.object({ email: z.string(), password: z.string() }))
-    .query(async ({ input }) => {
+    .mutation(async ({ input }) => {
       const { data } = await conduitAxios.post<UserResponse | ErrorResponse>(
         '/users/login',
         {
