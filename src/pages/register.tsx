@@ -10,28 +10,25 @@ import { trpc } from '~/utils/trpc'
 
 const RegisterPage: NextPage = () => {
   const { data: session } = trpc.auth.getSession.useQuery()
-  const loginMutation = trpc.auth.registerUser.useMutation()
+  const registerMutation = trpc.auth.registerUser.useMutation()
   const { register, watch } = useForm()
   const router = useRouter()
 
   const handleSubmit = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
+    async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
-      loginMutation
-        .mutateAsync({
-          email: watch('email'),
-          password: watch('password'),
-          username: watch('username'),
-        })
-        .then((response) => {
-          if ('errors' in response) {
-            deleteCookie('token')
-            return
-          }
-          setCookie('token', response.user.token)
-        })
+      const response = await registerMutation.mutateAsync({
+        email: watch('email'),
+        password: watch('password'),
+        username: watch('username'),
+      })
+      if ('errors' in response) {
+        deleteCookie('token')
+        return
+      }
+      setCookie('token', response.user.token)
     },
-    [watch, loginMutation],
+    [watch, registerMutation],
   )
 
   if (session) {
@@ -41,8 +38,8 @@ const RegisterPage: NextPage = () => {
   }
 
   const errors = (() => {
-    if (loginMutation.data && 'errors' in loginMutation.data) {
-      return loginMutation.data.errors
+    if (registerMutation.data && 'errors' in registerMutation.data) {
+      return registerMutation.data.errors
     }
     return {}
   })()
@@ -72,6 +69,7 @@ const RegisterPage: NextPage = () => {
                     name="username"
                     type="text"
                     placeholder="Your Name"
+                    disabled={registerMutation.isLoading}
                   />
                 </fieldset>
 
@@ -87,6 +85,7 @@ const RegisterPage: NextPage = () => {
                     name="email"
                     type="text"
                     placeholder="Email"
+                    disabled={registerMutation.isLoading}
                   />
                 </fieldset>
                 {errors.email && (
@@ -101,6 +100,7 @@ const RegisterPage: NextPage = () => {
                     name="password"
                     type="password"
                     placeholder="Password"
+                    disabled={registerMutation.isLoading}
                   />
                 </fieldset>
                 {errors.password && (
@@ -110,8 +110,8 @@ const RegisterPage: NextPage = () => {
                 )}
                 <button
                   className="btn btn-lg btn-primary pull-xs-right"
-                  disabled={loginMutation.isLoading}
-                  aria-disabled={loginMutation.isLoading}
+                  disabled={registerMutation.isLoading}
+                  aria-disabled={registerMutation.isLoading}
                 >
                   Sign up
                 </button>
