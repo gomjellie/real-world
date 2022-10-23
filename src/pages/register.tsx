@@ -1,16 +1,18 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import type { FormEvent } from 'react'
 import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { Header } from '~/components/Header'
-import { setCookie } from '~/utils/cookieUtils'
+import { deleteCookie, setCookie } from '~/utils/cookieUtils'
 import { trpc } from '~/utils/trpc'
 
 const RegisterPage: NextPage = () => {
   const { data: session } = trpc.auth.getSession.useQuery()
   const loginMutation = trpc.auth.registerUser.useMutation()
   const { register, watch } = useForm()
+  const router = useRouter()
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -23,6 +25,7 @@ const RegisterPage: NextPage = () => {
         })
         .then((response) => {
           if ('errors' in response) {
+            deleteCookie('token')
             return
           }
           setCookie('token', response.user.token)
@@ -33,7 +36,7 @@ const RegisterPage: NextPage = () => {
 
   if (session) {
     // TODO: redirect to home page
-    window.location.href = '/'
+    router.push('/')
     return <div>hi {session.username} you&apos;re already logged in</div>
   }
 
