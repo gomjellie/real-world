@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { Header } from '~/components/Header'
 
 const Article: NextPage = () => {
   return (
@@ -9,6 +10,7 @@ const Article: NextPage = () => {
         <meta name="description" content="Article" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
       <div className="article-page">
         <div className="banner">
           <div className="container">
