@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { Header } from '~/components/Header'
 
 const Profile: NextPage = () => {
@@ -44,78 +45,88 @@ const Profile: NextPage = () => {
               <div className="articles-toggle">
                 <ul className="nav nav-pills outline-active">
                   <li className="nav-item">
-                    <a className="nav-link active" href="">
-                      My Articles
-                    </a>
+                    <Link href="/profile/@author">
+                      <a className="nav-link active">My Articles</a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="">
-                      Favorited Articles
-                    </a>
+                    <Link href="/profile/@author/favorites">
+                      <a className="nav-link">Favorited Articles</a>
+                    </Link>
                   </li>
                 </ul>
               </div>
 
               <div className="article-preview">
                 <div className="article-meta">
-                  <a href="">
-                    <picture>
-                      <img
-                        src="http://i.imgur.com/Qr71crq.jpg"
-                        alt="article image"
-                      />
-                    </picture>
-                  </a>
+                  <Link href="/profile/@author">
+                    <a>
+                      <picture>
+                        <img
+                          src="http://i.imgur.com/Qr71crq.jpg"
+                          alt="article image"
+                        />
+                      </picture>
+                    </a>
+                  </Link>
 
                   <div className="info">
-                    <a href="" className="author">
-                      Eric Simons
-                    </a>
+                    <Link href="/profile/@author">
+                      <a className="author">Eric Simons</a>
+                    </Link>
                     <span className="date">January 20th</span>
                   </div>
                   <button className="btn btn-outline-primary btn-sm pull-xs-right">
                     <i className="ion-heart"></i> 29
                   </button>
                 </div>
-                <a href="" className="preview-link">
-                  <h1>How to build webapps that scale</h1>
-                  <p>This is the description for the post.</p>
-                  <span>Read more...</span>
-                </a>
+                <Link href="/profile/@author">
+                  <a className="preview-link">
+                    <h1>How to build webapps that scale</h1>
+                    <p>This is the description for the post.</p>
+                    <span>Read more...</span>
+                  </a>
+                </Link>
               </div>
 
               <div className="article-preview">
                 <div className="article-meta">
-                  <a href="">
-                    <picture>
-                      <img
-                        src="http://i.imgur.com/N4VcUeJ.jpg"
-                        alt="article image"
-                      />
-                    </picture>
-                  </a>
-                  <div className="info">
-                    <a href="" className="author">
-                      Albert Pai
+                  <Link href="/profile/@author">
+                    <a>
+                      <picture>
+                        <img
+                          src="http://i.imgur.com/N4VcUeJ.jpg"
+                          alt="article image"
+                        />
+                      </picture>
                     </a>
+                  </Link>
+                  <div className="info">
+                    <Link href="/profile/@author">
+                      <a className="author">Albert Pai</a>
+                    </Link>
                     <span className="date">January 20th</span>
                   </div>
                   <button className="btn btn-outline-primary btn-sm pull-xs-right">
                     <i className="ion-heart"></i> 32
                   </button>
                 </div>
-                <a href="" className="preview-link">
-                  <h1>
-                    The song you won&apos;t ever stop singing. No matter how
-                    hard you try.
-                  </h1>
-                  <p>This is the description for the post.</p>
-                  <span>Read more...</span>
-                  <ul className="tag-list">
-                    <li className="tag-default tag-pill tag-outline">Music</li>
-                    <li className="tag-default tag-pill tag-outline">Song</li>
-                  </ul>
-                </a>
+                <Link href="/article/slug">
+                  <a className="preview-link">
+                    <h1>
+                      The song you won&apos;t ever stop singing. No matter how
+                      hard you try.
+                    </h1>
+                    <p>This is the description for the post.</p>
+                    <span>Read more...</span>
+                    <ul className="tag-list">
+                      <li className="tag-default tag-pill tag-outline">
+                        Music
+                      </li>
+                      <li className="tag-default tag-pill tag-outline">Song</li>
+                    </ul>
+                  </a>
+                </Link>
               </div>
             </div>
           </div>

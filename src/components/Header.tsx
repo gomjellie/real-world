@@ -14,9 +14,7 @@ export const Header: FC = () => {
     <nav className="navbar navbar-light">
       <div className="container">
         <Link href="/">
-          <a className="navbar-brand" href="">
-            conduit
-          </a>
+          <a className="navbar-brand">conduit</a>
         </Link>
         <ul className="nav navbar-nav pull-xs-right">
           <li className="nav-item">
@@ -25,7 +23,6 @@ export const Header: FC = () => {
                 className={classnames('nav-link', {
                   active: pathname === '/',
                 })}
-                href=""
               >
                 Home
               </a>
@@ -34,7 +31,7 @@ export const Header: FC = () => {
           {isLoggedIn && (
             <li className="nav-item">
               <Link href="/editor">
-                <a className="nav-link" href="">
+                <a className="nav-link">
                   <i className="ion-compose"></i>&nbsp;New Article
                 </a>
               </Link>
@@ -43,7 +40,7 @@ export const Header: FC = () => {
           {isLoggedIn && (
             <li className="nav-item">
               <Link href="/settings">
-                <a className="nav-link" href="">
+                <a className="nav-link">
                   <i className="ion-gear-a"></i>&nbsp;Settings
                 </a>
               </Link>
@@ -52,7 +49,7 @@ export const Header: FC = () => {
           {isLoggedIn && (
             <li className="nav-item">
               <Link href={`/profile/@${session.username}`}>
-                <a className="nav-link" href="">
+                <a className="nav-link">
                   <picture>
                     <source srcSet={session.image} type="image/jpeg" />
                     <img
@@ -73,7 +70,6 @@ export const Header: FC = () => {
                   className={classnames('nav-link', {
                     active: pathname === '/login',
                   })}
-                  href=""
                 >
                   Sign in
                 </a>
@@ -87,7 +83,6 @@ export const Header: FC = () => {
                   className={classnames('nav-link', {
                     active: pathname === '/register',
                   })}
-                  href=""
                 >
                   Sign up
                 </a>
