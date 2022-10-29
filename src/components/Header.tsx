@@ -1,11 +1,11 @@
 import classnames from 'classnames'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import { trpc } from '~/utils/trpc'
 
-export const Header: FC<{
-  readonly active: 'home' | 'login' | 'register'
-}> = ({ active }) => {
+export const Header: FC = () => {
+  const { pathname } = useRouter()
   const { data: session } = trpc.auth.getSession.useQuery()
 
   const isLoggedIn = session != null && 'username' in session
@@ -23,7 +23,7 @@ export const Header: FC<{
             <Link href="/">
               <a
                 className={classnames('nav-link', {
-                  active: active === 'home',
+                  active: pathname === '/',
                 })}
                 href=""
               >
@@ -33,21 +33,25 @@ export const Header: FC<{
           </li>
           {isLoggedIn && (
             <li className="nav-item">
-              <a className="nav-link" href="">
-                <i className="ion-compose"></i>&nbsp;New Article
-              </a>
+              <Link href="/editor">
+                <a className="nav-link" href="">
+                  <i className="ion-compose"></i>&nbsp;New Article
+                </a>
+              </Link>
             </li>
           )}
           {isLoggedIn && (
             <li className="nav-item">
-              <a className="nav-link" href="">
-                <i className="ion-gear-a"></i>&nbsp;Settings
-              </a>
+              <Link href="/settings">
+                <a className="nav-link" href="">
+                  <i className="ion-gear-a"></i>&nbsp;Settings
+                </a>
+              </Link>
             </li>
           )}
           {isLoggedIn && (
             <li className="nav-item">
-              <Link href={`/@${session.username}`}>
+              <Link href={`/profile/@${session.username}`}>
                 <a className="nav-link" href="">
                   <picture>
                     <source srcSet={session.image} type="image/jpeg" />
@@ -67,7 +71,7 @@ export const Header: FC<{
               <Link href="/login">
                 <a
                   className={classnames('nav-link', {
-                    active: active === 'login',
+                    active: pathname === '/login',
                   })}
                   href=""
                 >
@@ -81,7 +85,7 @@ export const Header: FC<{
               <Link href="/register">
                 <a
                   className={classnames('nav-link', {
-                    active: active === 'register',
+                    active: pathname === '/register',
                   })}
                   href=""
                 >

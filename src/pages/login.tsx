@@ -52,7 +52,7 @@ const LoginPage: NextPage = () => {
         <meta name="description" content="Login to Real World" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header active="login" />
+      <Header />
       <div className="auth-page">
         <div className="container page">
           <div className="row">
