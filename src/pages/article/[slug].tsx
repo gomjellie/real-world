@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { Header } from '~/components/Header'
 
 const Article: NextPage = () => {
@@ -17,15 +18,17 @@ const Article: NextPage = () => {
             <h1>How to build webapps that scale</h1>
 
             <div className="article-meta">
-              <a href="">
-                <picture>
-                  <img src="http://i.imgur.com/Qr71crq.jpg" alt="author" />
-                </picture>
-              </a>
-              <div className="info">
-                <a href="" className="author">
-                  Eric Simons
+              <Link href="/profile/@author">
+                <a>
+                  <picture>
+                    <img src="http://i.imgur.com/Qr71crq.jpg" alt="author" />
+                  </picture>
                 </a>
+              </Link>
+              <div className="info">
+                <Link href="/profile/@author">
+                  <a className="author">Eric Simons</a>
+                </Link>
                 <span className="date">January 20th</span>
               </div>
               <button className="btn btn-sm btn-outline-secondary">
@@ -66,9 +69,9 @@ const Article: NextPage = () => {
                 </picture>
               </a>
               <div className="info">
-                <a href="" className="author">
-                  Eric Simons
-                </a>
+                <Link href="/profile/@author">
+                  <a className="author">Eric Simons</a>
+                </Link>
                 <span className="date">January 20th</span>
               </div>
               <button className="btn btn-sm btn-outline-secondary">
@@ -115,19 +118,21 @@ const Article: NextPage = () => {
                   </p>
                 </div>
                 <div className="card-footer">
-                  <a href="" className="comment-author">
-                    <picture>
-                      <img
-                        src="http://i.imgur.com/Qr71crq.jpg"
-                        className="comment-author-img"
-                        alt="author"
-                      />
-                    </picture>
-                  </a>
+                  <Link href="/profile/@author">
+                    <a className="comment-author">
+                      <picture>
+                        <img
+                          src="http://i.imgur.com/Qr71crq.jpg"
+                          className="comment-author-img"
+                          alt="author"
+                        />
+                      </picture>
+                    </a>
+                  </Link>
                   &nbsp;
-                  <a href="" className="comment-author">
-                    Jacob Schmidt
-                  </a>
+                  <Link href="/profile/@author">
+                    <a className="comment-author">Jacob Schmidt</a>
+                  </Link>
                   <span className="date-posted">Dec 29th</span>
                 </div>
               </div>
@@ -140,19 +145,21 @@ const Article: NextPage = () => {
                   </p>
                 </div>
                 <div className="card-footer">
-                  <a href="" className="comment-author">
-                    <picture>
-                      <img
-                        src="http://i.imgur.com/Qr71crq.jpg"
-                        className="comment-author-img"
-                        alt="author"
-                      />
-                    </picture>
-                  </a>
+                  <Link href="/profile/@author">
+                    <a className="comment-author">
+                      <picture>
+                        <img
+                          src="http://i.imgur.com/Qr71crq.jpg"
+                          className="comment-author-img"
+                          alt="author"
+                        />
+                      </picture>
+                    </a>
+                  </Link>
                   &nbsp;
-                  <a href="" className="comment-author">
-                    Jacob Schmidt
-                  </a>
+                  <Link href="/profile/@author">
+                    <a className="comment-author">Jacob Schmidt</a>
+                  </Link>
                   <span className="date-posted">Dec 29th</span>
                   <span className="mod-options">
                     <i className="ion-edit"></i>

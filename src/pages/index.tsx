@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { Header } from '~/components/Header'
 
 const Home: NextPage = () => {
@@ -25,75 +26,89 @@ const Home: NextPage = () => {
               <div className="feed-toggle">
                 <ul className="nav nav-pills outline-active">
                   <li className="nav-item">
-                    <a className="nav-link disabled" href="">
-                      Your Feed
-                    </a>
+                    <Link href="#your-feed">
+                      <a className="nav-link disabled">Your Feed</a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link active" href="">
-                      Global Feed
-                    </a>
+                    <Link href="#global-feed">
+                      <a className="nav-link active">Global Feed</a>
+                    </Link>
                   </li>
                 </ul>
               </div>
 
               <div className="article-preview">
                 <div className="article-meta">
-                  <a href="profile.html">
-                    <picture>
-                      <source
-                        srcSet="http://i.imgur.com/Qr71crq.jpg"
-                        type="image/jpeg"
-                      />
-                      <img src="http://i.imgur.com/Qr71crq.jpg" alt="profile" />
-                    </picture>
-                  </a>
-                  <div className="info">
-                    <a href="" className="author">
-                      Eric Simons
+                  <Link href="/user/@author">
+                    <a>
+                      <picture>
+                        <source
+                          srcSet="http://i.imgur.com/Qr71crq.jpg"
+                          type="image/jpeg"
+                        />
+                        <img
+                          src="http://i.imgur.com/Qr71crq.jpg"
+                          alt="profile"
+                        />
+                      </picture>
                     </a>
+                  </Link>
+                  <div className="info">
+                    <Link href="/user/@author">
+                      <a className="author">Eric Simons</a>
+                    </Link>
                     <span className="date">January 20th</span>
                   </div>
                   <button className="btn btn-outline-primary btn-sm pull-xs-right">
                     <i className="ion-heart"></i> 29
                   </button>
                 </div>
-                <a href="" className="preview-link">
-                  <h1>How to build webapps that scale</h1>
-                  <p>This is the description for the post.</p>
-                  <span>Read more...</span>
-                </a>
+                <Link href="/article/slug">
+                  <a className="preview-link">
+                    <h1>How to build webapps that scale</h1>
+                    <p>This is the description for the post.</p>
+                    <span>Read more...</span>
+                  </a>
+                </Link>
               </div>
 
               <div className="article-preview">
                 <div className="article-meta">
-                  <a href="profile.html">
-                    <picture>
-                      <source
-                        srcSet="http://i.imgur.com/N4VcUeJ.jpg"
-                        type="image/jpeg"
-                      />
-                      <img src="http://i.imgur.com/N4VcUeJ.jpg" alt="profile" />
-                    </picture>
-                  </a>
-                  <div className="info">
-                    <a href="" className="author">
-                      Albert Pai
+                  <Link href="/user/@author">
+                    <a>
+                      <picture>
+                        <source
+                          srcSet="http://i.imgur.com/N4VcUeJ.jpg"
+                          type="image/jpeg"
+                        />
+                        <img
+                          src="http://i.imgur.com/N4VcUeJ.jpg"
+                          alt="profile"
+                        />
+                      </picture>
                     </a>
+                  </Link>
+                  <div className="info">
+                    <Link href="/user/@author">
+                      <a className="author">Albert Pai</a>
+                    </Link>
                     <span className="date">January 20th</span>
                   </div>
                   <button className="btn btn-outline-primary btn-sm pull-xs-right">
                     <i className="ion-heart"></i> 32
                   </button>
                 </div>
-                <a href="" className="preview-link">
-                  <h1>
-                    The song you won&apost ever stop singing. No matter how hard
-                    you try.
-                  </h1>
-                  <p>This is the description for the post.</p>
-                  <span>Read more...</span>
-                </a>
+                <Link href="/article/slug">
+                  <a className="preview-link">
+                    <h1>
+                      The song you won&apost ever stop singing. No matter how
+                      hard you try.
+                    </h1>
+                    <p>This is the description for the post.</p>
+                    <span>Read more...</span>
+                  </a>
+                </Link>
               </div>
             </div>
 
@@ -102,30 +117,14 @@ const Home: NextPage = () => {
                 <p>Popular Tags</p>
 
                 <div className="tag-list">
-                  <a href="" className="tag-pill tag-default">
-                    programming
-                  </a>
-                  <a href="" className="tag-pill tag-default">
-                    javascript
-                  </a>
-                  <a href="" className="tag-pill tag-default">
-                    emberjs
-                  </a>
-                  <a href="" className="tag-pill tag-default">
-                    angularjs
-                  </a>
-                  <a href="" className="tag-pill tag-default">
-                    react
-                  </a>
-                  <a href="" className="tag-pill tag-default">
-                    mean
-                  </a>
-                  <a href="" className="tag-pill tag-default">
-                    node
-                  </a>
-                  <a href="" className="tag-pill tag-default">
-                    rails
-                  </a>
+                  <button className="tag-pill tag-default">programming</button>
+                  <button className="tag-pill tag-default">javascript</button>
+                  <button className="tag-pill tag-default">emberjs</button>
+                  <button className="tag-pill tag-default">angularjs</button>
+                  <button className="tag-pill tag-default">react</button>
+                  <button className="tag-pill tag-default">mean</button>
+                  <button className="tag-pill tag-default">node</button>
+                  <button className="tag-pill tag-default">rails</button>
                 </div>
               </div>
             </div>

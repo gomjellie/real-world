@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { FormEvent } from 'react'
 import { useCallback, useEffect } from 'react'
@@ -59,7 +60,9 @@ const RegisterPage: NextPage = () => {
             <div className="col-md-6 offset-md-3 col-xs-12">
               <h1 className="text-xs-center">Register</h1>
               <p className="text-xs-center">
-                <a href="">Have an account?</a>
+                <Link href="/login">
+                  <a>Have an account?</a>
+                </Link>
               </p>
 
               <form onSubmit={handleSubmit}>
